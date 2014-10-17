@@ -1,6 +1,21 @@
-var contacts = [];
+//-----------------------------------------------------------------------------
+//Address Book
+//-----------------------------------------------------------------------------
+var bob = {
+    firstName: "Bob",
+    lastName: "Jones",
+    phoneNumber: "(650) 777-7777",
+    email: "bob.jones@example.com"
+};
 
+var mary = {
+    firstName: "Mary",
+    lastName: "Johnson",
+    phoneNumber: "(650) 888-8888",
+    email: "mary.johnson@example.com"
+};
 
+var contacts = [bob, mary];
 
 function printPerson(person) {
     console.log(person.firstName + " " + person.lastName);
@@ -13,6 +28,8 @@ function list() {
 	}
 }
 
+/*Create a search function
+then call it passing "Jones"*/
 function search(lastName){
     var contactsLength = contacts.length;
     for (var i = 0; i < contactsLength; i++) {
@@ -30,42 +47,21 @@ function add(firstName, lastName, email, phoneNumber){
         phoneNumber: phoneNumber
     };
 }
- 
- var contacts = [];
-
-function printPerson(person) {
-    console.log(person.firstName + " " + person.lastName);
-}
-
-function list() {
-	var contactsLength = contacts.length;
-	for (var i = 0; i < contactsLength; i++) {
-		printPerson(contacts[i]);
-	}
-}
-
-function search(lastName){
-    var contactsLength = contacts.length;
-    for (var i = 0; i < contactsLength; i++) {
-        if(contacts[i].lastName === lastName){
-            printPerson(contacts[i]);
-        }
-	}
-}
-
-function add(firstName, lastName, email, phoneNumber){
-    contacts[contacts.length] = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        phoneNumber: phoneNumber
-    };
-}
-
+add("Toni-Ann", "Fitzgerald", "tfit@email.com", "(876) 832-2324");
+list();
+//-----------------------------------------------------------------------------
+//Cash Register
+//-----------------------------------------------------------------------------
 function StaffMember(name,discountPercent){
     this.name = name;
     this.discountPercent = discountPercent;
 }
+
+var sally = new StaffMember("Sally",5);
+var bob = new StaffMember("Bob",10);
+
+// Create yourself again as 'me' with a staff discount of 20%
+var me = new StaffMember("Toni-Ann",20);
 
 var cashRegister = {
     total:0,
@@ -94,4 +90,12 @@ var cashRegister = {
     
 };
 
+cashRegister.scan('eggs',1);
+cashRegister.scan('milk',1);
+cashRegister.scan('magazine',3);
+// Apply your staff discount by passing the 'me' object 
+// to applyStaffDiscount
+cashRegister.applyStaffDiscount(me);
+
+// Show the total bill
 console.log('Your bill is '+cashRegister.total.toFixed(2));
